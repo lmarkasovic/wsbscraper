@@ -17,7 +17,8 @@ lingo = ['I', 'A', 'DD', 'WSB', 'LOL', 'IV', 'IP', 'YOLO', 'TIL', 'EDIT', 'OTM',
 filteredTickers = [ele for ele in tickers if ele not in lingo]
 
 #fetch daily discussion thread
-submission = next(reddit.subreddit("wallstreetbets").search("title:Daily Discussion Thread for AND flair:Daily Discussion", time_filter='day'))
+#submission = next(reddit.subreddit("wallstreetbets").search("title:Daily Discussion Thread for AND flair:Daily Discussion", time_filter='day'))
+submission = next(reddit.subreddit("wallstreetbets").search("title:What Are Your Moves Tomorrow AND flair:Daily Discussion", time_filter='day'))
 print (submission.title)
 
 #add limit=X to scrap first X pages only
@@ -29,9 +30,8 @@ countsum=[0]*len(filteredTickers)
 #compare comment text with ticker list and count
 comments = submission.comments.list()
 for comment in comments:
-    #ignore downvoted posts
+    #ignore downvoted posts as they not represent the hivemind
     if comment.score > -1:
-        #print(comment.body)
         for i, ticker in enumerate(filteredTickers):
             #match tickers with whole words only (in case that body contains "ASO" don't match "A" but match "ASO")
             if ticker in (comment.body).split():
