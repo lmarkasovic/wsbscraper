@@ -3,7 +3,7 @@ Scraps daily discussion thread of r/wallstreetbets and returns most discussed st
 
 
 ## Usage
-add file authenticate.py to main dir
+1. add file authenticate.py to main dir
 ```python
 import praw
 
@@ -14,3 +14,5 @@ def redditAuthenticate():
                          password = '',
                          user_agent='')
 ```
+
+2. run main.py
